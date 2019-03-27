@@ -1,0 +1,99 @@
+import random
+import time
+
+print("Ünlü şans oyununa hoşgeldiniz....")
+
+print("bu bir bet oyunudur dinimizce günahdır ama biz şerefsizzzz olduğumuzdan dolayı  yapmakta bulunuyoruz amannn boşverin kim takar neyse bol şanslar dileriz")
+print("""
+1 - casino
+2 - kart
+3 - şans topu
+
+
+
+""")
+dah = 0
+gerekli = ["siyah","kırmızı","kasa","kasa"]
+avel_para = int(input(" başlamak için para yatırmanız lazım Kaç lira basıcaksınız ?  :"))
+if avel_para < 1000:
+    print("1000 lira ve üzeri paralar yatırmanız lazım")
+    avel_para = int(input(" Evet Kaç lira basıcaksınız ?  :"))
+oyna = int(input("hangi oyunu oynıcaksınız ? :"))
+
+while True:
+    if oyna == 1:
+        print("casino oyununa hoşgeldiniz kaç kişilik masaya oturmak istersiniz minumun 4 maksimum 6 kişiliğe oturabilirsiniz")
+        kac = int(input("? : "))
+        if not 4 <= kac <= 6:
+            print("yanlış tercih yaptınız..")
+        elif kac == 4:
+            print("4 kişilik masaya oturdunuz")
+            print(avel_para,"bu kadar paranız var kaç lira basıcaksınız bu masaya ")
+            bas = int(input("Evet ? :"))
+            cik = avel_para - bas
+            print(bas,"bu masaya yatırcağınız para bu kadar emin misiniz ?   'Evet ve ya Hayır' ")
+            print(cik,"bu kadar paranız kaldı")
+            emin = input("   : ")
+            if emin == "evet":
+                pass
+            elif emin == "hayır":
+                bas = int(input("Evet ?   : "))
+
+            print("evet oyun nihayet başlıyor hazır olun....")
+            time.sleep(2)
+
+            print("evet neye oyanyacaksını siyah mı kırmızı mı ? ")
+            renk = input("? :")
+
+            if renk == "siyah" or "Siyah":
+                print("siyahı seçtiniz...")
+                print("Siyahın daha çıkma ihtimalini artırmak için '550' lira daha yatırmalsınız yatırcakmısınız 'evet' yada 'hayır'")
+                daha = input("evet : ")
+                if daha == "evet":
+                    dah = cik - 550
+                    print("para çıkarıldı bu kadar paranız kaldı : ",dah)
+                    zengin = gerekli.append("siyah")
+                elif daha == "hayır":
+                    print("anlaşıldı")
+
+            elif renk == "kırmızı" or "Kırmızı":
+                print("kırmızı yı seçtiniz")
+                print("kırmızı daha çıkma ihtimalini artırmak için '550' lira daha yatırmalsınız yatırcakmısınız 'evet' yada 'hayır'")
+                daha = input("Evet ? :")
+                if daha == "evet":
+                    dah = cik - 550
+                    print("para çıkarıldı bu kadar paranız kaldı : ",dah)
+                    zengin = gerekli.append("kırmızı")
+                elif daha == "hayır":
+                    print("anlaşıldı")
+
+            time.sleep(3)
+            print("diğer oyuncular renklerini seçiyor ")
+            time.sleep(2)
+            print("Top atılıyor....")
+            time.sleep(4)
+            iki = random.choice(gerekli)
+
+            print("siz şuna oynadınız : ",renk)
+
+            if iki == "kasa":
+                print("kaybettiniz")
+                print("tekrar oynamak için 'devam' yazmanız gerekiyor")
+                cev = input("evet cevabınız :")
+                if cev == "bırak":
+                    print("çıkılıyor")
+                    break
+                elif cev == "devam":
+                    print("devam ediliyor")
+                    continue
+
+            elif iki == renk:
+                print("helal olsun be kazanadınız para hesabınıza aktarılıyor ",dah + bas + 500)
+                print("tekrar oynamak için 'devam' yazmanız gerekiyor")
+                cev = input("evet cevabınız :")
+                if cev == "bırak":
+                    print("çıkılıyor")
+                    break
+                elif cev == "devam":
+                    print("devam ediliyor")
+                    continue
